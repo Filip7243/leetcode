@@ -1,22 +1,25 @@
 public class LongestCommonPrefix {
 
     public static void main(String[] args) {
-
+        System.out.println(longestCommonPrefix(new String[]{"abc", "abd", "abe"}));
     }
 
     public static String longestCommonPrefix(String[] strs) {
-        StringBuilder result = new StringBuilder();
-        int k = 0;
-
-        for (int i = 0; i < strs.length;) {
-            for (int j = 1; j < strs.length; j++) {
-                if (strs[i].charAt(k) == strs[j].charAt(k)) {
-                    result.append(strs[i].charAt(k));
-                }
-            }
-            break;
+        if(strs.length == 0) {
+            return "";
         }
 
-        return result.toString();
+        String s = strs[0];
+        for(int i = 1; i < strs.length; i++) {
+            String word = strs[i];
+            while (word.indexOf(s) != 0) {
+                s = s.substring(0, s.length() - 1);
+                if(s.isEmpty()) {
+                    return "";
+                }
+            }
+        }
+
+        return s;
     }
 }
